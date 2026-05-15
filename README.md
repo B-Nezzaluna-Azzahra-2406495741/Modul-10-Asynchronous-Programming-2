@@ -11,3 +11,9 @@ Berdasarkan hasil eksekusi pada screenshot tersebut, program dijalankan dengan m
 ![Port 8080 Connection](public/port-8080.png)
 
 Berdasarkan hasil eksekusi pada screenshot tersebut, port berhasil diubah menjadi 8080 dan program tetap berjalan dengan lancar. Modifikasi ini dilakukan pada dua sisi, yaitu sisi server yang diatur untuk listen pada port 8080 dan sisi client yang alamat URI nya diperbarui agar mengarah ke port yang sama untuk memastikan koneksi berhasil tersambung. Protokol yang digunakan dalam proogram ini adalah WebSocket, yaitu dengan skema ws dalam URI koneksi yang didefinisikan pada file seperti client.rs. Keberhasilan modifikasi ini dibuktikan dengan munculnya pesan "New connection" pada terminal server dan kemampuan client untuk mengirim serta menerima pesan secara asynchronus melalui protokol tersebut.
+
+## Reflection 2.3.
+
+![Add Information](public/add-information.png)
+
+Berdasarkan hasil eksekusi pada screenshot tersebut, modifikasi dilakukan untuk menambahkan informasi alamat IP dan nomor port pengirim ke dalam setiap pesan yang dikirimkan. Karena sistem saat ini belum memiliki mekanisme nama pengguna, informasi alamat socket digunakan sebagai identitas unik untuk membantu memahami bagaimana pesan diteruskan antar satu sama lain di dalam jaringan. Hal ini terlihat jelas pada jendela terminal di mana setiap pesan yang diterima sekarang memiliki awalan alamat pengirim, yang membuktikan bahwa server secara asynchronus berhasil mengolah metadata koneksi dan menyebarkannya ke seluruh client yang terhubung secara real-time.

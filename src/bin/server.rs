@@ -19,6 +19,9 @@ async fn handle_connection(
                 match msg {
                     Some(Ok(message)) if message.is_text() => {
                         let text = message.as_text().unwrap();
+                        
+                        println!("From client {addr} \"{text}\"");
+                        
                         let broadcast = format!("{addr}: {text}");
                         let _ = bcast_tx.send(broadcast);
                     }
@@ -52,7 +55,9 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
 
     loop {
         let (socket, addr) = listener.accept().await?;
-        println!("New connection from {addr:?}");
+        
+        println!("New connection from Nezzaluna's Computer {addr}");
+        
         let bcast_tx = bcast_tx.clone();
         tokio::spawn(async move {
             let (_req, ws_stream) = ServerBuilder::new().accept(socket).await?;
